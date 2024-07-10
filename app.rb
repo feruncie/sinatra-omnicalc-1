@@ -40,8 +40,8 @@ end
 get("/payment/results") do
 
   apr = params.fetch("apr").to_f / 100
-  years = params.fetch("years").to_f
-  principal = params.fetch("prinicpal").to_f
+  years = params.fetch("years").to_i
+  principal = params.fetch("principal").to_f
 
   monthly_rate = apr / 12 
   number_of_payments = years * 12
@@ -56,7 +56,7 @@ get("/payment/results") do
   @the_apr = "#{rounded_apr}%"
   @years = years
   @principal = format_currency(principal)
-  @paymentresult = format_currency(payment_result)
+  @payment = format_currency(payment_result)
 
   erb(:payment_results)
 end
